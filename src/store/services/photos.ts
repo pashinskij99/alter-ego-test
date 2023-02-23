@@ -1,15 +1,11 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import type {IPhoto} from '../../types/photo.types'
+import {ILimit, Status} from "../../types/store.types";
 
 interface IInitialState {
   photos: IPhoto[]
-  status: 'pending' | 'fulfilled' | 'rejected' | ''
+  status: Status
   error: string
-}
-
-interface ILimit {
-  start: number
-  limit: number
 }
 
 const getLimitPhotos = (start: number, limit: number) =>
