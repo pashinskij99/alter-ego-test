@@ -1,8 +1,13 @@
 import { Box, Typography } from "@mui/material";
+import {useTranslation} from "react-i18next";
 
-export const Home = () => (
+const styleSection = {display: 'flex', alignItems: 'center', justifyContent: 'center', flexGrow: 2}
 
-  <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
-    <Typography variant='h1' >Home</Typography>
-  </Box>
-);
+export const Home = () => {
+  const {t} = useTranslation()
+  return (
+    <Box component='section' sx={styleSection}>
+      <Typography variant='h1'>{t('home')}</Typography>
+    </Box>
+  );
+}

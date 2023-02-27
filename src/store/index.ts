@@ -1,10 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit'
-import {setupListeners} from '@reduxjs/toolkit/query'
 import photoReducer from './services/photos'
+import isAuthReducer from './services/isAuth'
 
 export const store = configureStore({
   reducer: {
-    photos: photoReducer
+    photos: photoReducer,
+    isAuth: isAuthReducer
   },
 })
 
