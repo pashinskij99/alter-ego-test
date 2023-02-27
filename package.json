@@ -54,7 +54,6 @@
     ]
   },
   "devDependencies": {
-    "generate-react-cli": "^8.2.0",
-    "sass": "^1.58.3"
+    "generate-react-cli": "^8.2.0"
   }
 }

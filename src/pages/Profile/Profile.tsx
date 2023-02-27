@@ -1,9 +1,20 @@
-import styles from './Profile.module.scss';
+import {Navigate} from "react-router-dom";
+import {APP_LINKS} from "../../types/constant.types";
+import {Box, Container, Typography} from "@mui/material";
+import {useAppSelector} from "../../store/hooks/hooks";
 
-interface ProfileProps { }
+export const Profile = () => {
+  const {isAuth} = useAppSelector(state => state.isAuth)
 
-export const Profile = ({ }: ProfileProps) => (
-  <div className={styles.profile}>
-    Profile Component
-  </div>
-);
+  return isAuth
+    ? <ProfileContent />
+    : <Navigate to={APP_LINKS.HOME} />
+}
+
+const ProfileContent = () => (
+  <Box component='section'>
+    <Container>
+
+    </Container>
+  </Box>
+)
