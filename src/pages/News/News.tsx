@@ -56,7 +56,8 @@ const GridNews = ({photos}: IGridNews) => {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {title}
+                  {/*{title}*/}
+                  {t('cards_title')}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {t('cards_description')}

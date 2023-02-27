@@ -5,6 +5,7 @@ import {setAuth} from "../../store/services/isAuth";
 import {APP_LINKS} from "../../types/constant.types";
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch} from "../../store/hooks/hooks";
+import {useTranslation} from "react-i18next";
 
 enum FORM_REDUCER_ACTION_TYPES {
   SET_NAME = 'SET_NAME',
@@ -56,6 +57,8 @@ const inputStyle = {
 }
 
 export const Form = () => {
+  const {t} = useTranslation()
+
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const navigate = useNavigate()
@@ -84,7 +87,6 @@ export const Form = () => {
     }
   }
 
-
   const handleChangeName: ChangeEventHandler<HTMLInputElement> = (event) => dispatch({
     type: FORM_REDUCER_ACTION_TYPES.SET_NAME,
     payload: event.target.value
@@ -93,6 +95,7 @@ export const Form = () => {
     type: FORM_REDUCER_ACTION_TYPES.SET_PASSWORD,
     payload: event.target.value
   })
+
   return (
     <Box
       onSubmit={handleSubmit}
@@ -100,12 +103,12 @@ export const Form = () => {
       sx={{'& > :not(style)': {m: 1},}}
       autoComplete="off"
     >
-      <Typography id="transition-modal-title" variant="h5" component="h5">Sign in</Typography>
+      <Typography id="transition-modal-title" variant="h5" component="h5">{t('sign_in')}</Typography>
       <TextField
         error={state.errorName ? true : false}
         onChange={handleChangeName}
         sx={inputStyle}
-        label="Username"
+        label={t("form.username")}
         variant="outlined"
         helperText={state.errorName}
       />
@@ -113,11 +116,11 @@ export const Form = () => {
         error={state.errorPassword ? true : false}
         onChange={handleChangePassword}
         sx={inputStyle}
-        label="Password"
+        label={t("form.password")}
         variant="outlined"
         helperText={state.errorPassword}
       />
-      <Button type='submit' color="primary" variant='contained'>Sign in</Button>
+      <Button type='submit' color="primary" variant='contained'>{t('sign_in')}</Button>
     </Box>
   )
 }

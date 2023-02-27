@@ -2,6 +2,7 @@ import {ReactNode, useState} from "react";
 import {Box, Button, Fade} from "@mui/material";
 import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
+import {useTranslation} from "react-i18next";
 
 interface IModalComponent {
   children: ReactNode
@@ -24,10 +25,12 @@ export const ModalComponent = ({children}: IModalComponent) => {
     p: 4,
   };
 
+  const {t} = useTranslation()
+
   return (
-    <Box mr={'auto'}>
-      <Button onClick={handleOpen} color="inherit" variant='outlined'>Log in</Button>
-      <Button sx={{marginLeft: 2}} color="secondary" variant='contained'>Sign up</Button>
+    <Box ml='15px'>
+      <Button onClick={handleOpen} color="inherit" variant='outlined'>{t('sign_in')}</Button>
+      <Button sx={{marginLeft: 2}} color="secondary" variant='contained'>{t('sign_up')}</Button>
 
       <Modal
         aria-labelledby="transition-modal-title"

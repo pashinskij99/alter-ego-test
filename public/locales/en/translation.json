@@ -1,8 +1,15 @@
 {
   "home": "Home page",
+  "cards_title": "Lizard",
   "cards_description": "Lizards are a widespread group of squamate reptiles, with over 6,000\n                species, ranging across all continents except Antarctica",
   "nav": {
     "home": "Home",
     "news": "News"
+  },
+  "sign_in": "Log in",
+  "sign_up": "Sign up",
+  "form": {
+    "username": "Username",
+    "password": "Password"
   }
 }
