@@ -10,7 +10,7 @@ const styleSection = {
   display: 'flex', alignItems: 'center'
 }
 
-type Language = 'en' | 'ua'
+type Language = 'en' | 'uk'
 
 const spanStyle = {fontWeight: '600', fontSize: '20px', padding: '0 5px'}
 
@@ -26,7 +26,7 @@ export const LanguageMenu = () => {
     <Box style={styleSection}>
       <Button onClick={() => changeLanguage("en")} style={styleButton} color='inherit'>EN</Button>
       <span style={spanStyle}>/</span>
-      <Button onClick={() => changeLanguage("ua")} style={styleButton} color='inherit'>UA</Button>
+      <Button onClick={() => changeLanguage("uk")} style={styleButton} color='inherit'>UK</Button>
     </Box>
   );
 }

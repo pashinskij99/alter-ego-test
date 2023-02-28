@@ -22,6 +22,24 @@ export const fetchPhotos = createAsyncThunk(
   }
 )
 
+export const deletePhoto = createAsyncThunk(
+  'photos/removePhoto',
+  async (id: number, {rejectWithValue, dispatch}) => {
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${id}`, {
+        method: 'DELETE'
+      })
+      console.log(response)
+      if(!response.ok) throw new Error('Can\'t delete photo. Server error!')
+
+      dispatch(removePhoto(id))
+
+    } catch (e: any) {
+      return rejectWithValue(e.message)
+    }
+  }
+)
+
 const initialState: IInitialState = {
   photos: [],
   status: '',
@@ -31,7 +49,11 @@ const initialState: IInitialState = {
 const photoSlice = createSlice({
   name: 'photos',
   initialState,
-  reducers: {},
+  reducers: {
+    removePhoto(state, action){
+      state.photos = state.photos.filter(photo => photo.id !== action.payload)
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPhotos.pending, (state, action) => {
       state.status = 'pending'
@@ -49,5 +71,6 @@ const photoSlice = createSlice({
   }
 })
 
+export const {removePhoto} = photoSlice.actions
 export default photoSlice.reducer
 

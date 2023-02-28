@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ADMIN_DATA} from '../../types/store.types'
+import {ADMIN_DATA} from "../../types/enum";
 
 const auth = localStorage.getItem(ADMIN_DATA.USERNAME) !== null
   ? localStorage.getItem(ADMIN_DATA.USERNAME) === ADMIN_DATA.PASSWORD

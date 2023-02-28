@@ -10,6 +10,41 @@
   "sign_up": "Sign up",
   "form": {
     "username": "Username",
-    "password": "Password"
+    "password": "Password",
+    "username_error": "Incorrect username",
+    "password_error": "Incorrect password"
+  },
+  "user_panel": {
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "profile": {
+    "title": {
+      "0": "Y A R O S L A V",
+      "1": "P A S H I N S K I J"
+    },
+    "sub_title": "FRONTEND DEVELOPER",
+    "description": "Greetings! My name is Yaroslav, I am 23 years old and I actively learning and developing in the frontend development. At the moment I am looking for a suitable vacancy that will provide me with a rapid growth and decent pay. I am a goal oriented and hard working person. I got my skills in this direction by working in my previous company, as well as passing various courses and self-development.",
+    "skills": {
+      "title": "SKILLS",
+      "0": "Javascript, ES6+",
+      "1": "ReactJS, NextJS, Redux, ReduxToolkit",
+      "2": "HTML5, CSS3(Sass / Scss / Less) / Bootstrap",
+      "3": "Three.js",
+      "4": "Version Control, Git, GitLab",
+      "5": "Adaptive and Cross-Browser Development",
+      "6": "Debugging"
+    },
+    "experience": {
+      "title": "EXPERIENCE",
+      "0": "Adaptive cross-browser layout of websites and landing pages",
+      "1": "Creation of sites on React, NextJS, Typescript, Redux, ThreeJS",
+      "2": "Most of the projects required the use of 3D models and graphics, for these purposes I used the ThreeJS library",
+      "3": "Teamwork was done using GitLab",
+      "4": "Uploading applications to Amazon server (AWS) using pm2"
+    },
+    "projects": {
+      "title": "SOME OF MY PROJECTS"
+    }
   }
 }
