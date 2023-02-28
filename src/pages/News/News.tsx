@@ -1,14 +1,15 @@
-import {Box, Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography} from '@mui/material'
+import {Box, Button, Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography} from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useAppDispatch, useAppSelector} from "../../store/hooks/hooks";
 import LoadingButton from '@mui/lab/LoadingButton';
 import {useEffect} from "react";
-import {fetchPhotos} from "../../store/services/photos";
+import {deletePhoto, fetchPhotos} from "../../store/services/photos";
 import {ILoadMoreButton} from "../../types/constant.types";
 import {setLimit} from "../../utils/setLimit";
 import {IPhoto} from "../../types/photo.types";
 import {SpinnerSvg} from "../../components/IconsComponent";
 import {useTranslation} from "react-i18next";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const News = () => {
   const dispatch = useAppDispatch()
@@ -28,7 +29,7 @@ export const News = () => {
             <GridNews photos={photos}/>
             <LoadMoreButton photosLength={photos.length} loading={status}/>
           </>
-          : <SpinnerSvg />
+          : <SpinnerSvg/>
         }
       </Container>
     </Box>
@@ -42,26 +43,23 @@ interface IGridNews {
 const GridNews = ({photos}: IGridNews) => {
   const {t} = useTranslation()
 
+  const dispatch = useAppDispatch()
+
+  const removeTodo = (id: number) => dispatch(deletePhoto(id))
+
   return (
     <Grid container spacing={{xs: 2, md: 3}} columns={{xs: 1, sm: 8, md: 12}}>
       {photos?.map(({id, title, url}) => (
         <Grid item xs={2} sm={4} md={4} key={id}>
-          <Card>
+          <Card style={{position: 'relative'}}>
             <CardActionArea>
-              <CardMedia
-                component="img"
-                height="240"
-                image={url}
-                alt={title}
-              />
+              <CardMedia component="img" height="240" image={url} alt={title}/>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {/*{title}*/}
-                  {t('cards_title')}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {t('cards_description')}
-                </Typography>
+                <Box marginBottom='10px' display='flex' alignItems='center' justifyContent='space-between'>
+                  <Typography variant="h5" component="div">{t('cards_title')}</Typography>
+                  <Button onClick={() => removeTodo(id)} style={{minWidth: '15px', padding: 0}}><DeleteIcon color='action' /></Button>
+                </Box>
+                <Typography variant="body2" color="text.secondary">{t('cards_description')}</Typography>
               </CardContent>
             </CardActionArea>
           </Card>

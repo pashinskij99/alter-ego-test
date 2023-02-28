@@ -1,13 +1,7 @@
 import { SvgIconTypeMap } from "@mui/material"
 import { OverridableComponent } from "@mui/material/OverridableComponent"
 import {Status} from "./store.types";
-
-export enum APP_LINKS {
-  HOME = '/',
-  PROFILE = '/profile',
-  NEWS = '/news',
-  ERROR = '/error'
-}
+import {APP_LINKS} from "./enum";
 
 export interface IPagesLink {
   id: number
@@ -19,4 +13,19 @@ export interface IPagesLink {
 export interface ILoadMoreButton {
   photosLength: number
   loading: Status
+}
+
+export interface ISkills {
+  id: number
+  name: string
+}
+
+export interface IExperience {
+  id: number
+  name: string
+}
+
+export interface IProjects {
+  id: number
+  href: string
 }

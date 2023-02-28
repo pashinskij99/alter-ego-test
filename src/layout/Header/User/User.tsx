@@ -1,10 +1,12 @@
 import {Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip} from '@mui/material';
 import {MouseEventHandler, useRef, useState} from 'react';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import {Logout} from "@mui/icons-material";
-import {Link, useNavigate} from "react-router-dom";
-import {pagesLink} from "../../../constants";
-import {APP_LINKS} from "../../../types/constant.types";
+import {useNavigate} from "react-router-dom";
+import my_image from '../../../assets/image/me.jfif'
+import {useTranslation} from "react-i18next";
+import {ADMIN_DATA, APP_LINKS} from "../../../types/enum";
+import {useAppDispatch} from "../../../store/hooks/hooks";
+import {setAuth} from "../../../store/services/isAuth";
 
 export const User = () => {
   const [open, setOpen] = useState<boolean>(false)
@@ -16,7 +18,22 @@ export const User = () => {
     setOpen(true)
   }
 
+  const dispatch = useAppDispatch()
+
+  const {t} = useTranslation()
+
   const navigate = useNavigate()
+
+  const handleLogout = () => {
+    localStorage.removeItem(ADMIN_DATA.USERNAME);
+    dispatch(setAuth(false))
+    handleClose()
+  }
+
+  const handleProfile = () => {
+    navigate(APP_LINKS.PROFILE)
+    handleClose()
+  }
 
   const renderMenu = (
     <Menu
@@ -50,21 +67,18 @@ export const User = () => {
           },
         },
       }}
-      transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      transformOrigin={{horizontal: 'right', vertical: 'top'}}
+      anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
     >
-      <MenuItem onClick={() => {
-        navigate(APP_LINKS.PROFILE)
-        handleClose()
-      }}>
-        <Avatar /> Profile
+      <MenuItem onClick={handleProfile}>
+        <Avatar/> {t('user_panel.profile')}
       </MenuItem>
-      <Divider />
-      <MenuItem onClick={handleClose}>
+      <Divider/>
+      <MenuItem onClick={handleLogout}>
         <ListItemIcon>
-          <Logout fontSize="small" />
+          <Logout fontSize="small"/>
         </ListItemIcon>
-        Logout
+        {t('user_panel.logout')}
       </MenuItem>
     </Menu>
   );
@@ -75,12 +89,12 @@ export const User = () => {
         <IconButton
           onClick={handleOpen}
           size="small"
-          sx={{ ml: 2 }}
+          sx={{ml: 2}}
           aria-controls={open ? 'account-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
         >
-          <AccountCircle sx={{ width: 32, height: 32 }}>M</AccountCircle>
+          <img style={{borderRadius: '50%', width: 32, height: 32}} src={my_image} alt="my image"/>
         </IconButton>
       </Tooltip>
       {renderMenu}

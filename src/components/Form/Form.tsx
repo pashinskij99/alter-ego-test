@@ -1,18 +1,10 @@
 import {Box, Button, TextField, Typography} from "@mui/material";
 import {ChangeEventHandler, FormEventHandler, useReducer} from "react";
-import {ADMIN_DATA} from "../../types/store.types";
 import {setAuth} from "../../store/services/isAuth";
-import {APP_LINKS} from "../../types/constant.types";
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch} from "../../store/hooks/hooks";
 import {useTranslation} from "react-i18next";
-
-enum FORM_REDUCER_ACTION_TYPES {
-  SET_NAME = 'SET_NAME',
-  SET_PASSWORD = 'SET_PASSWORD',
-  SET_PASSWORD_ERROR = 'SET_PASSWORD_ERROR',
-  SET_NAME_ERROR = 'SET_NAME_ERROR',
-}
+import {ADMIN_DATA, APP_LINKS, FORM_REDUCER_ACTION_TYPES} from "../../types/enum";
 
 interface IFormInitialState {
   name: string,
@@ -110,7 +102,7 @@ export const Form = () => {
         sx={inputStyle}
         label={t("form.username")}
         variant="outlined"
-        helperText={state.errorName}
+        helperText={state.errorName ? t('form.username_error') : null}
       />
       <TextField
         error={state.errorPassword ? true : false}
@@ -118,7 +110,7 @@ export const Form = () => {
         sx={inputStyle}
         label={t("form.password")}
         variant="outlined"
-        helperText={state.errorPassword}
+        helperText={state.errorPassword ? t('form.password_error') : null}
       />
       <Button type='submit' color="primary" variant='contained'>{t('sign_in')}</Button>
     </Box>
